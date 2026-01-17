@@ -1,7 +1,21 @@
-# scenario_translation.py
-# Aidan Richer
+# =================================================================================================================================================== #
+# Author: Aidan Richer
+#
+#   This file translates high-level scenario inputs into concrete portfolio impacts.
+#   The purpose is to convert abstract shocks (e.g. equity drawdown, redemption) into asset-level stress losses and total liquidity required.
+#
+#       translate_scenario
+#           - takes a scenario dictionary and applies it to the portfolio
+#           - adjusts stress losses on specific asset buckets
+#           - calculates total cash that must be raised
+#
+# =================================================================================================================================================== #
+
 
 def translate_scenario(profile, scenario, assumptions):
+    """
+    Function to apply the user-defined scenario and calculate the total cash that must be raised
+    """
     stressed_profile = profile.copy()
     total_liquidity_demand = 0.0
     total_fund_value = profile["market_value"].sum()

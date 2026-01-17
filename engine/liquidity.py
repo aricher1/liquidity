@@ -1,5 +1,15 @@
-# liquidity.py
-# Aidan Richer
+# =================================================================================================================================================== #
+# Author: Aidan Richer
+#
+#   This file contains the core liquidity mechanics used in the stress test.
+#       - apply stress losses to each asset bucket
+#       - simulate raising cash through a simple liquidation waterfall
+#
+#       stressed_value: market value after applying stress losses
+#       cash_required: total cash that must be raised (e.g. redemptions)
+#       days_to_liquidity: worst-case number of days needed to access sufficient cash
+#       breach: indicates failure to raise required cash with available assets
+# =================================================================================================================================================== #
 
 import pandas as pd
 
@@ -13,6 +23,10 @@ def apply_stress(profile):
 
 
 def run_waterfall(stressed_profile, cash_required):
+    """
+    Function to simluate the liquidity waterfall
+    """
+
     rows = []
     remaining_need = cash_required
     days_to_liquidity = 0
