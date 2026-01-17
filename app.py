@@ -57,7 +57,7 @@ if freeze_t90:
     profile.loc[profile["bucket"] == "Infrastructure [T+90]", "available"] = False
 
 scenario = {"equity_drawdown": -equity, "credit_shock": -credit, "fx_shock": -fx, "redemption": redemption,}
-stressed_profile, liquidity_demand = translate_scenario(profile = profile, scenari = scenario, assumptions = ASSUMPTIONS,)
+stressed_profile, liquidity_demand = translate_scenario(profile = profile, scenario = scenario, assumptions = ASSUMPTIONS,)
 stressed_profile = apply_stress(stressed_profile)
 waterfall, summary = run_waterfall(stressed_profile = stressed_profile, cash_required = liquidity_demand,)
 metrics = liquidity_metrics(summary)
