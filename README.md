@@ -17,7 +17,11 @@
 
 ## Description
 
-This repository models portfolio liquidity under different stress tests. It applies scenario shocks to a hypothetical portfolio, translates those shocks into asset-level losses and cash requirements, and simulates raising liquidity through a simple liquidation waterfall. The model is intentionally simple. It is meant to test mechanics and logic, not to produce realistic or calibrated results.
+This repository models portfolio liquidity under different stress tests. 
+It applies scenario shocks to a hypothetical portfolio, translates those shocks 
+into asset-level losses and cash requirements, and simulates raising liquidity 
+through a simple liquidation waterfall. The model is intentionally simple. 
+It is meant to test mechanics and logic, not to produce realistic or calibrated results.
 
 ## Usage Example
 

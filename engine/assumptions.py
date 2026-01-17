@@ -37,7 +37,7 @@ ASSUMPTIONS = {
     "fx_shock": {
         "bucket": "Cash & Short-Term Bonds",
         "pass_through": 0.5,
-        "liquidity_demand_pct": 0.00
+        "liquidity_demand_pct": 0.05
     },
     "redemption": {
         "type": "direct_liability"
