@@ -10,9 +10,9 @@
 │   ├── assumptions.py
 │   ├── liquidity.py
 │   ├── metrics.py
-│   └── scenario_translation.py
-├── engine/
-│   ├── liquidity_stress_app.ipynb
+│   ├── scenario_translation.py
+│   └── utils.py
+├── app.py
 ├── README.md
 ├── requirements.txt
 └── runtime.txt
