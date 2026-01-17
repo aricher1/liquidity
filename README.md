@@ -2,6 +2,8 @@
 
 ## Repository Layout
 
+```text
+
 .
 ├── engine/
 │   ├── assets.py
@@ -9,12 +11,13 @@
 │   ├── liquidity.py
 │   ├── metrics.py
 │   └── scenario_translation.py
-├── liquidity_stress_app.py
+├── engine/
+│   ├── liquidity_stress_app.ipynb
 ├── README.md
 ├── requirements.txt
 └── runtime.txt
 
--- 
+```
 
 ## Description
 
@@ -24,10 +27,7 @@ The framework is designed to assess whether a fund can meet redemption requireme
 
 All model assumptions are illustrative and intentionally simplified. They are not calibrated to any specific fund, strategy, or market environment and should not be interpreted as precise, predictive, or executable liquidity estimates.
 
---
 
 ## Usage Example
 
 A usage example will be added here once the main script is finalized.
-
---
