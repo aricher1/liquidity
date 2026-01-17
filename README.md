@@ -28,6 +28,6 @@ The framework is designed to assess whether a fund can meet redemption requireme
 All model assumptions are illustrative and intentionally simplified. They are not calibrated to any specific fund, strategy, or market environment and should not be interpreted as precise, predictive, or executable liquidity estimates.
 
 
-## Usage Example
+## Live App (StreamLit)
 
-A usage example will be added here once the main script is finalized.
+[Liquidity Stress Engine](https://liquidity-enxggdvuuhlyuitb4ptn7c.streamlit.app)
