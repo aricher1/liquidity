@@ -1,9 +1,16 @@
+# liquidity.py
+# Aidan Richer
+
 import pandas as pd
+
 
 def apply_stress(profile):
     stressed = profile.copy()
-    stressed["stressed_value"] = stressed["market_value"] * (1 - stressed["stress_loss_pct"])
+    stressed["effective_loss"] = stressed["stress_loss_pct"].clip(upper=1.0)
+    stressed["stressed_value"] =  (stressed["market_value"] * (1 - stressed["effective_loss"]) )
+
     return stressed
+
 
 def run_waterfall(stressed_profile, cash_required):
     rows = []
@@ -43,9 +50,3 @@ def run_waterfall(stressed_profile, cash_required):
         "days_to_liquidity": days_to_liquidity,
         "breach": remaining_need > 0
     }
-
-def run_liquidity_stress(profile, redemption_rate):
-    stressed = apply_stress(profile)
-    total_stressed_value = stressed["stressed_value"].sum()
-    cash_required = redemption_rate * total_stressed_value
-    return run_waterfall(stressed, cash_required)
