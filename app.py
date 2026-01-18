@@ -11,12 +11,6 @@
 #         environment, and should not be interpreted as precise or predictive estimates.
 # =================================================================================================================================================== #
 
-import sys
-from pathlib import Path
-
-project_root = Path(__file__).parent
-sys.path.append(str(project_root))
-
 import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -28,10 +22,10 @@ from engine.scenario_translation import translate_scenario
 from engine.utils import (DARK_BG, CARD_BG, TEXT_MAIN, TEXT_MUTED, GREEN, RED, BORDER, fmt_bn, color_days, style_cash_used, style_remaining, inject_global_css,)
 
 
-st.set_page_config(page_title="Liquidity Stress Engine", layout="wide", initial_sidebar_state="expanded",)
+st.set_page_config(page_title="Liquidity Stress Engine", layout = "wide", initial_sidebar_state = "expanded",)
 inject_global_css(st)
 
-st.sidebar.markdown(f"<h3 style='color:{TEXT_MAIN}'>Stress Inputs</h3>", unsafe_allow_html=True)
+st.sidebar.markdown(f"<h3 style='color:{TEXT_MAIN}'>Stress Inputs</h3>", unsafe_allow_html = True)
 
 equity = st.sidebar.slider("Equity Drawdown", 0.0, 0.99, 0.0, 0.01)
 credit = st.sidebar.slider("Credit Shock", 0.0, 0.99, 0.0, 0.01)
@@ -79,7 +73,7 @@ def card(col, title, value, color=TEXT_MAIN):
             <div style="font-size:20px; font-weight:600; color:{color};">{value}</div>
         </div>
         """,
-        unsafe_allow_html=True,
+        unsafe_allow_html = True,
     )
 
 card(c1, "Liquidity Status", status, status_color)
@@ -97,18 +91,12 @@ st.markdown(
         <div class="item">Redemption: {scenario['redemption']:.0%}</div>
     </div>
     """,
-    unsafe_allow_html=True,
+    unsafe_allow_html = True,
 )
 
 st.markdown(f"<h3 style='color:{TEXT_MAIN}'>Liquidity Waterfall</h3>", unsafe_allow_html=True)
 
-wf = waterfall.copy().rename(columns={
-    "bucket": "Asset Bucket",
-    "stressed_value": "Stressed Value",
-    "cash_used": "Cash Used",
-    "remaining_value": "Remaining Value",
-    "days_to_cash": "Days to Cash",
-})
+wf = waterfall.copy().rename(columns = {"bucket": "Asset Bucket", "stressed_value": "Stressed Value", "cash_used": "Cash Used", "remaining_value": "Remaining Value", "days_to_cash": "Days to Cash",})
 
 def row_style(row):
     return [
@@ -122,15 +110,8 @@ styled = (
     .apply(row_style, axis = 1)
     .applymap(style_cash_used, subset = ["Cash Used"])
     .applymap(color_days, subset = ["Days to Cash"])
-    .format({
-        "Stressed Value": fmt_bn,
-        "Cash Used": fmt_bn,
-        "Remaining Value": fmt_bn,
-    })
-    .set_properties(**{
-        "background-color": CARD_BG,
-        "border-bottom": f"1px solid {BORDER}",
-    })
+    .format({"Stressed Value": fmt_bn, "Cash Used": fmt_bn, "Remaining Value": fmt_bn,})
+    .set_properties(**{"background-color": CARD_BG, "border-bottom": f"1px solid {BORDER}",})
 )
 
 st.dataframe(styled, use_container_width = True)
@@ -151,10 +132,7 @@ with col1:
 
     ax1.bar(
         ["Cash Required", "Cash Raised"],
-        [
-            metrics["cash_required"] / 1e9,
-            metrics["cash_raised"] / 1e9,
-        ],
+        [metrics["cash_required"] / 1e9, metrics["cash_raised"] / 1e9,],
         color=[RED, GREEN],
     )
 
@@ -177,12 +155,7 @@ with col2:
     for spine in ax2.spines.values():
         spine.set_color(BORDER)
 
-    ax2.barh(
-        wf_sorted["bucket"],
-        wf_sorted["cash_used"] / 1e9,
-        color=GREEN,
-    )
-
+    ax2.barh(wf_sorted["bucket"], wf_sorted["cash_used"] / 1e9, color=GREEN,)
     ax2.set_title("Liquidity Waterfall", fontsize = 10)
     ax2.set_xlabel("CAD (billions)", fontsize = 9, color = TEXT_MUTED)
 

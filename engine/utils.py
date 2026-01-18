@@ -1,10 +1,10 @@
 # =================================================================================================================================================== #
 #  Author: Aidan Richer
 #
-# contains the colour palette, formatting helpers, table styling, and global CSS for our app
+# This file contains the colour palette, formatting helpers, table styling, and global CSS for our app
 # =================================================================================================================================================== #
 
-# colours used
+
 DARK_BG = "#0f1115"     # charcoal black
 CARD_BG = "#151922"     # dark slate
 TEXT_MAIN = "#e6e6e6"   # light grey
@@ -42,9 +42,7 @@ def color_days(val):
 
 def style_cash_used(val):
     """
-    Function to change colour if cash used:
-        - green if bucket contributes liquidity
-        - muted otherwise
+    Function to change colour if cash used
     """
     if val > 0:
         return f"color:{GREEN}; font-weight:600"
@@ -53,9 +51,7 @@ def style_cash_used(val):
 
 def style_remaining(val, cash_used):
     """
-    Function to change colour for remaining value:
-        - red if liquidity was drawn from bucket
-        - normal otherwise
+    Function to change colour for remaining value
     """
     if cash_used > 0:
         return f"color:{RED}; font-weight:600"
@@ -69,23 +65,12 @@ def inject_global_css(st):
     st.markdown(
         f"""
         <style>
-        body {{
-            background-color: {DARK_BG};
-            color: {TEXT_MAIN};
-        }}
 
-        .stApp {{
-            background-color: {DARK_BG};
-        }}
-
-        .stDataFrame td {{
-            font-size: 14px !important;
-        }}
-
-        .stDataFrame th {{
-            font-size: 15px !important;
-            font-weight: 600;
-        }}
+        body {{ background-color: {DARK_BG}; color: {TEXT_MAIN}; }}
+        
+        .stApp {{ background-color: {DARK_BG}; }}
+        .stDataFrame td {{ font-size: 14px !important; }}
+        .stDataFrame th {{ font-size: 15px !important; font-weight: 600; }}
 
         .scenario-card {{
             background: {CARD_BG};
@@ -100,16 +85,11 @@ def inject_global_css(st):
             font-size: 14px;
         }}
 
-        .scenario-card .label {{
-            color: {TEXT_MAIN};
-            font-weight: 600;
-        }}
-
-        .scenario-card .item {{
-            color: {TEXT_MUTED};
-            white-space: nowrap;
-        }}
+        .scenario-card .label {{ color: {TEXT_MAIN}; font-weight: 600; }}
+        .scenario-card .item {{ color: {TEXT_MUTED}; white-space: nowrap; }}
+        
         </style>
         """,
-        unsafe_allow_html=True,
+
+        unsafe_allow_html = True,
     )
